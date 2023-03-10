@@ -12,6 +12,7 @@ interface NavLink {
 
 function NavLink({ url, text }: NavLink) {
   const path = usePathname();
+
   return (
     <li className="flex">
       <Link

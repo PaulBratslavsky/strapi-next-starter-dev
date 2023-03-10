@@ -26,7 +26,6 @@ interface PriceProps {
 }
 
 export default function Pricing({ data }: PriceProps) {
-  console.log(data.plans[0].product_features.data, "hello");
   return (
     <section className="py-20 dark:bg-black dark:text-gray-100 m:py-12 lg:py-24">
       <div className="container px-4 mx-auto ">
@@ -78,7 +77,7 @@ export default function Pricing({ data }: PriceProps) {
                       : "dark:text-gray-400"
                   }`}
                 >
-                  {plan.product_features.data.map((feature) => (
+                  {plan.product_features.data.map((feature: Feature) => (
                     <li key={feature.id} className="flex mb-2 space-x-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

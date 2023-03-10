@@ -74,7 +74,7 @@ export default async function RootLayout({
             logoText={navbar.navbarLogo.logoText}
           />
         )}
-        {children}
+        <main className="dark:bg-black dark:text-gray-100 min-h-screen">{children}</main>
         <Banner data={notificationBanner} />
         {Footer && (
           <Footer

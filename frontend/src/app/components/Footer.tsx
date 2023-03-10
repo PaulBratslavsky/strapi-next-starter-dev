@@ -130,6 +130,7 @@ export default function Footer({
             {socialLinks.map((link: FooterLink) => {
               return (
                 <a
+                  key={link.id}
                   rel="noopener noreferrer"
                   href={link.url}
                   title={link.text}
