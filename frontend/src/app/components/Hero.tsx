@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import HighlightedText from "./HighlightedText";
-import { getStrapiMedia } from "../utils/get-strapi-media";
+import { getStrapiURL } from "../utils/api-helpers";
 import { renderButtonStyle } from "../utils/render-button-style";
 
 interface Button {
@@ -34,7 +34,7 @@ interface HeroProps {
 }
 
 export default function Hero({ data }: HeroProps) {
-  const imgUrl = getStrapiMedia(data.picture.data.attributes.url);
+  const imgUrl = getStrapiURL(data.picture.data.attributes.url);
 
   return (
     <section className="dark:bg-black dark:text-gray-100">

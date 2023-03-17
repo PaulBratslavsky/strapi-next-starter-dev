@@ -1,3 +1,9 @@
+export function getStrapiURL(path = "") {
+  return `${
+    process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"
+  }${path}`;
+}
+
 export function getStrapiMedia(url: string | null) {
   if (url == null) {
     return null;
@@ -9,7 +15,5 @@ export function getStrapiMedia(url: string | null) {
   }
 
   // Otherwise prepend the URL path with the Strapi URL
-  return `${
-    process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"
-  }${url}`;
+  return `${getStrapiURL()}${url}`;
 }
