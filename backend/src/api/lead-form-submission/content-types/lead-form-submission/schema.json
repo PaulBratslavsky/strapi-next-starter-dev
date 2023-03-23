@@ -24,12 +24,6 @@
         "contacted",
         "ignored"
       ]
-    },
-    "location": {
-      "type": "string"
-    },
-    "description": {
-      "type": "text"
     }
   }
 }

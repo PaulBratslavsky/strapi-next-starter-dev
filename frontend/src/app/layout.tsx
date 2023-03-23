@@ -1,36 +1,35 @@
-import qs from "qs";
 
 import type { Metadata } from "next";
 import { getStrapiURL, getStrapiMedia } from "./utils/api-helpers";
+import { fetchAPI } from "./utils/fetch-api";
+import "./globals.css";
 
 import Banner from "./components/Banner";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import "./globals.css";
-
-const params = qs.stringify({
-  populate: [
-    "metadata.shareImage",
-    "favicon",
-    "notificationBanner.link",
-    "navbar.links",
-    "navbar.navbarLogo.logoImg",
-    "footer.footerLogo.logoImg",
-    "footer.menuLinks",
-    "footer.legalLinks",
-    "footer.socialLinks",
-    "footer.categoryLinks.categories",
-  ],
-});
-
 async function getGlobal() {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const res = await fetch(`${getStrapiURL()}/api/global?${params}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-
-  return res.json();
+  const path = `/global`;
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  
+  const urlParamsObject = {
+    populate: [
+      "metadata.shareImage",
+      "favicon",
+      "notificationBanner.link",
+      "navbar.links",
+      "navbar.navbarLogo.logoImg",
+      "footer.footerLogo.logoImg",
+      "footer.menuLinks",
+      "footer.legalLinks",
+      "footer.socialLinks",
+      "footer.categoryLinks.categories",
+    ],
+  };
+  
+  const response = await fetchAPI(path, urlParamsObject, options);
+  return response;
 }
 
 export async function generateMetadata(): Promise<Metadata> {
