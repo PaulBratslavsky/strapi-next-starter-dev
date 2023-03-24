@@ -50,7 +50,7 @@ export default function FormSubmit({
       <div className="flex flex-col">
         <div className="flex flex-row">
           {successMessage ? (
-            <p className="text-green-700 bg-green-300 px-4 py-2 rounded-md">
+            <p className="text-green-700 bg-green-300 px-4 py-2 rounded-lg">
               {successMessage}
             </p>
           ) : (
@@ -74,7 +74,7 @@ export default function FormSubmit({
         </div>
 
         {errorMessage && (
-          <p className="text-red-500 bg-red-200 px-4 py-2 rounded-md my-2">
+          <p className="text-red-500 bg-red-200 px-4 py-2 rounded-lg my-2">
             {errorMessage}
           </p>
         )}

@@ -56,6 +56,7 @@ export default function Blog({
             authorsBio?.avatar.data.attributes.url
           );
 
+
           return (
             <Link
               href={`blog/${article.attributes.slug}`}
