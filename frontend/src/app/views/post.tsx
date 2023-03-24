@@ -1,11 +1,23 @@
 import Image from "next/image";
 
-export default function Post() {
+interface Article {
+  id: 4;
+  attributes: {
+    title: string;
+    description: string;
+    slug: string;
+    publishedAt: string;
+  };  
+}
+
+export default function Post({ data }: { data: Article}) {
+  console.log(data)
+  const { title, description, slug, publishedAt } = data.attributes;
   return (
     <article className="space-y-8 dark:bg-black dark:text-gray-50">
       <div className="space-y-6">
         <h1 className="text-4xl font-bold md:tracking-tight md:text-5xl">
-          hello world
+          {title}
         </h1>
         <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-400">
           <div className="flex items-center md:space-x-2">
@@ -21,7 +33,7 @@ export default function Post() {
         </div>
       </div>
       <div className="dark:text-gray-100">
-        <p>article content</p>
+        <p>{description}</p>
       </div>
     </article>
   );

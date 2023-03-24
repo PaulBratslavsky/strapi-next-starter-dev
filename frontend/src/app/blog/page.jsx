@@ -46,12 +46,11 @@ export default function Profile() {
 
   function loadMorePosts() {
     const nextPosts = meta.pagination.start + meta.pagination.limit;
-    fetchData(nextPosts, 6);
-
+    fetchData(nextPosts, process.env.NEXT_PUBLIC_PAGE_LIMIT);
   }
 
   useEffect(() => {
-    fetchData(0, 6);
+    fetchData(0, process.env.NEXT_PUBLIC_PAGE_LIMIT);
   }, [fetchData]);
 
   if (isLoading) return <Loader />;
