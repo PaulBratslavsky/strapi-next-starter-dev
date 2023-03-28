@@ -6,6 +6,9 @@ interface Category {
   attributes: {
     name: string;
     slug: string;
+    articles: {
+      data: Array<{}>;
+    };
   };
 }
 
@@ -43,17 +46,20 @@ export default function ArticleSelect({
 
       <div>
         <div className="flex flex-wrap py-6 space-x-2 dark:border-gray-400">
-          {categories.map((category: Category) => (
-            <Link
-              href={`/blog/${category.attributes.slug}`}
-              className={selectedFilter(
-                category.attributes.slug,
-                params.category
-              )}
-            >
-              #{category.attributes.name}
-            </Link>
-          ))}
+          {categories.map((category: Category) => {
+            if (category.attributes.articles.data.length === 0) return null;
+            return (
+              <Link
+                href={`/blog/${category.attributes.slug}`}
+                className={selectedFilter(
+                  category.attributes.slug,
+                  params.category
+                )}
+              >
+                #{category.attributes.name}
+              </Link>
+            );
+          })}
           <Link href={"/blog"} className={selectedFilter("", "filter")}>
             #all
           </Link>

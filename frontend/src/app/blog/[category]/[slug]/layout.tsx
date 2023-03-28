@@ -9,7 +9,7 @@ async function fetchSideMenuData(filter: string) {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
     const options = { headers: { Authorization: `Bearer ${token}` } };
 
-    const categoriesResponse = await fetchAPI("/categories", {}, options);
+    const categoriesResponse = await fetchAPI("/categories", { populate: "*" }, options);
 
     const articlesResponse = await fetchAPI(
       "/articles",
@@ -65,7 +65,7 @@ export default async function LayoutRoute({
   };
 }) {
 
-  const { slug, category } = params;
+  const { category } = params;
 
 
 

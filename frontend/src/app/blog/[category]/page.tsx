@@ -37,11 +37,17 @@ export default async function CategoryRoute({
   params: { category: string };
 }) {
   const filter = params.category;
-  const { data }= await fetchPostsByCategory(filter);
-  const { name, description } = data[0].attributes.category.data.attributes;
+  const { data } = await fetchPostsByCategory(filter);
 
-  return <div>
-    <PageHeader heading={name} text={description} />
-    <BlogList data={data} />
-  </div>
+  //TODO: CREATE A COMPONENT FOR THIS
+  if (data.length === 0) return <div>Not Posts In this category</div>;
+
+  const { name, description } = data[0]?.attributes.category.data.attributes;
+
+  return (
+    <div>
+      <PageHeader heading={name} text={description} />
+      <BlogList data={data} />
+    </div>
+  );
 }
