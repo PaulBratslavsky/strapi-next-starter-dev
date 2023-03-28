@@ -1,5 +1,5 @@
-import Post from "../../views/post";
-import { fetchAPI } from "../../utils/fetch-api";
+import Post from "@/app/views/post";
+import { fetchAPI } from "@/app/utils/fetch-api";
 
 async function getPostBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -35,13 +35,20 @@ export async function generateStaticParams() {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/articles`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const articleResponse = await fetchAPI(path, {}, options);
+  const articleResponse = await fetchAPI(path, {
+    populate: ['category']
+  }, options);
+
+  console.log(articleResponse);
 
   return articleResponse.data.map(
     (article: {
       attributes: {
         slug: string;
+        category: {
+          slug: string,
+        }
       };
-    }) => ({ slug: article.attributes.slug })
+    }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
   );
 }

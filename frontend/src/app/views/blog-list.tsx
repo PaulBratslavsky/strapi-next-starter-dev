@@ -18,6 +18,14 @@ interface Article {
         };
       };
     };
+    category: {
+      data: {
+        attributes: {
+          name: string;
+          slug: string;
+        };
+      };
+    };
     authorsBio: {
       data: {
         attributes: {
@@ -50,16 +58,18 @@ export default function PostList({
             article.attributes.cover.data?.attributes.url
           );
 
+          const category = article.attributes.category.data?.attributes;
+          console.log(category?.name, category?.slug);
+
           const authorsBio = article.attributes.authorsBio.data?.attributes;
 
           const avatarUrl = getStrapiMedia(
             authorsBio?.avatar.data.attributes.url
           );
 
-
           return (
             <Link
-              href={`blog/${article.attributes.slug}`}
+              href={`blog/${category?.slug}/${article.attributes.slug}`}
               key={article.id}
               className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
             >

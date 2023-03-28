@@ -1,3 +1,4 @@
+import PageHeader from "@/app/components/PageHeader";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import BlogList from "@/app/views/blog-list";
 
@@ -8,12 +9,15 @@ async function fetchPostsByCategory(filter: string) {
     const urlParamsObject = {
       filters: {
         category: {
-          name: filter,
+          slug: filter,
         },
       },
 
       populate: {
         cover: { fields: ["url"] },
+        category: {
+          populate: "*",
+        },
         authorsBio: {
           populate: "*",
         },
@@ -34,5 +38,10 @@ export default async function CategoryRoute({
 }) {
   const filter = params.category;
   const { data }= await fetchPostsByCategory(filter);
-  return <BlogList data={data} />;
+  const { name, description } = data[0].attributes.category.data.attributes;
+
+  return <div>
+    <PageHeader heading={name} text={description} />
+    <BlogList data={data} />
+  </div>
 }
