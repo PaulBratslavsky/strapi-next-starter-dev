@@ -1,6 +1,5 @@
 import React from "react";
 
-import Link from "next/link";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import ArticleSelect from "@/app/components/ArticleSelect";
 
@@ -66,16 +65,7 @@ export default async function LayoutRoute({
 }) {
 
   const { category } = params;
-
-
-
-
-
   const { categories, articles } = (await fetchSideMenuData(category)) as Data;
-
-console.log(articles,"articles")
-console.log(params)
-
 
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
@@ -90,7 +80,6 @@ console.log(params)
 }
 
 
-
 export async function generateStaticParams() {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/articles`;
@@ -98,8 +87,6 @@ export async function generateStaticParams() {
   const articleResponse = await fetchAPI(path, {
     populate: ['category']
   }, options);
-
-  console.log(articleResponse);
 
   return articleResponse.data.map(
     (article: {

@@ -38,7 +38,6 @@ export default function ArticleSelect({
     category: string;
   };
 }) {
-  console.log(params, articles, categories);
 
   return (
     <div className="p-4 rounded-lg dark:bg-gray-900 min-h-[365px] relative">
@@ -69,7 +68,6 @@ export default function ArticleSelect({
           <h4 className="text-lg font-semibold">Other Posts You May Like</h4>
           <ul className="ml-4 space-y-1 list-disc">
             {articles.map((article: Article) => {
-              console.log(article.attributes.slug, "===", params.slug);
               return (
                 <li>
                   <Link

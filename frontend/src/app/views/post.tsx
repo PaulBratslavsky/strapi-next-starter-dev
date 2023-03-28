@@ -21,7 +21,6 @@ interface Article {
 }
 
 export default function Post({ data }: { data: Article }) {
-  // console.log(data.attributes.blocks);
   const { title, description, slug, publishedAt, cover } = data.attributes;
   const imageUrl = getStrapiMedia(cover.data?.attributes.url);
 
