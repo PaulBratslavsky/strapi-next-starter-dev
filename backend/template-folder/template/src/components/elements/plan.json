@@ -3,7 +3,8 @@
   "info": {
     "name": "plan",
     "displayName": "Pricing plan",
-    "icon": "search-dollar"
+    "icon": "search-dollar",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,11 +14,6 @@
     "description": {
       "type": "text"
     },
-    "features": {
-      "type": "component",
-      "repeatable": true,
-      "component": "elements.feature"
-    },
     "isRecommended": {
       "type": "boolean"
     },
@@ -26,6 +22,11 @@
     },
     "pricePeriod": {
       "type": "string"
+    },
+    "product_features": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-feature.product-feature"
     }
   }
 }

@@ -5,7 +5,8 @@
     "singularName": "lead-form-submission",
     "pluralName": "lead-form-submissions",
     "displayName": "Lead form submission",
-    "name": "lead-form-submission"
+    "name": "lead-form-submission",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -23,9 +24,6 @@
         "contacted",
         "ignored"
       ]
-    },
-    "location": {
-      "type": "string"
     }
   }
 }

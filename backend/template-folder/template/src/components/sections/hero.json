@@ -3,29 +3,26 @@
   "info": {
     "name": "Hero",
     "displayName": "Hero",
-    "icon": "heading"
+    "icon": "heading",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
-    },
-    "label": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "picture": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": false
-    },
-    "smallTextWithLink": {
-      "type": "richtext"
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "buttons": {
       "type": "component",

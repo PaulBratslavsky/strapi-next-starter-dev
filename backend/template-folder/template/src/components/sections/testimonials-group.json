@@ -3,7 +3,8 @@
   "info": {
     "name": "TestimonialsGroup",
     "displayName": "Testimonials group",
-    "icon": "user-friends"
+    "icon": "user-friends",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -12,16 +13,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "link": {
-      "type": "component",
-      "repeatable": false,
-      "component": "links.link"
-    },
-    "logos": {
-      "type": "component",
-      "repeatable": true,
-      "component": "elements.logos"
     },
     "testimonials": {
       "type": "component",
