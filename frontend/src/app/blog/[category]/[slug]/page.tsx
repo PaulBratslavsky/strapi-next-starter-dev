@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Post from "@/app/views/post";
 import { fetchAPI } from "@/app/utils/fetch-api";
+import Post from "@/app/views/post";
+
 
 async function getPostBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -9,7 +10,7 @@ async function getPostBySlug(slug: string) {
     filters: { slug },
     populate: {
       cover: { fields: ["url"] },
-      authorsBio: { fields: ["name", "avatar"] },
+      authorsBio: { populate: "*" },
       category: { fields: ["name"] },
       blocks: { populate: "*" },
     },

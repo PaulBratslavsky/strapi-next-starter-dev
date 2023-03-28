@@ -16,7 +16,7 @@ interface Meta {
 
 export default function Profile() {
   const [meta, setMeta] = useState<Meta | undefined>();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
 
   const fetchData = useCallback(async (start: number, limit: number) => {
@@ -25,6 +25,7 @@ export default function Profile() {
       const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
       const path = `/articles`;
       const urlParamsObject = {
+        sort: { createdAt: "desc" },
         populate: {
           cover: { fields: ["url"] },
           category: { populate: "*" },
@@ -43,7 +44,7 @@ export default function Profile() {
       if (start === 0) {
         setData(responseData.data);
       } else {
-        setData((prevData) => [...prevData, ...responseData.data]);
+        setData((prevData: any[] ) => [...prevData, ...responseData.data]);
       }
 
       setMeta(responseData.meta);
@@ -65,6 +66,7 @@ export default function Profile() {
 
   if (isLoading) return <Loader />;
 
+  console.log(JSON.stringify(data[0]));
   return (
     <div>
       <PageHeader heading="Our Blog" text="Checkout Something Cool" />

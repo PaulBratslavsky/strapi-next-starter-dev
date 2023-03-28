@@ -7,12 +7,12 @@ async function fetchPostsByCategory(filter: string) {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
     const path = `/articles`;
     const urlParamsObject = {
+      sort: { createdAt: "desc" },
       filters: {
         category: {
           slug: filter,
         },
       },
-
       populate: {
         cover: { fields: ["url"] },
         category: {

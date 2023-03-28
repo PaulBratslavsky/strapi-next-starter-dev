@@ -60,7 +60,7 @@ export default function PostList({
 
           const category = article.attributes.category.data?.attributes;
           const authorsBio = article.attributes.authorsBio.data?.attributes;
-          
+
           const avatarUrl = getStrapiMedia(
             authorsBio?.avatar.data.attributes.url
           );
@@ -87,9 +87,10 @@ export default function PostList({
                     width="80"
                     height="80"
                     src={avatarUrl}
-                    className="rounded-full absolute -top-[40px] right-4"
+                    className="rounded-full h-16 w-16 object-cover absolute -top-8 right-4"
                   />
                 )}
+
                 <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
                   {article.attributes.title}
                 </h3>

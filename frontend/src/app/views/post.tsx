@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { getStrapiMedia } from "../utils/api-helpers";
-import { postRenderer } from "../utils/post-renderer";
+import { getStrapiMedia, formatDate } from "@/app/utils/api-helpers";
+import { postRenderer } from "@/app/utils/post-renderer";
 
 interface Article {
-  id: 4;
+  id: number;
   attributes: {
     title: string;
     description: string;
@@ -15,14 +15,31 @@ interface Article {
         };
       };
     };
+    authorsBio: {
+      data: {
+        attributes: {
+          name: string;
+          avatar: {
+            data: {
+              attributes: {
+                url: string;
+              };
+            };
+          };
+        };
+      };
+    };
     blocks: any[];
     publishedAt: string;
   };
 }
 
 export default function Post({ data }: { data: Article }) {
-  const { title, description, slug, publishedAt, cover } = data.attributes;
+  const { title, description, publishedAt, cover, authorsBio } =
+    data.attributes;
+  const author = authorsBio.data?.attributes;
   const imageUrl = getStrapiMedia(cover.data?.attributes.url);
+  const authorImgUrl = getStrapiMedia(authorsBio.data?.attributes.avatar.data.attributes.url);
 
   return (
     <article className="space-y-8 dark:bg-black dark:text-gray-50">
@@ -36,22 +53,20 @@ export default function Post({ data }: { data: Article }) {
         />
       )}
       <div className="space-y-6">
-        <h1 className="text-4xl font-bold md:tracking-tight md:text-5xl">
-          {title}
-        </h1>
+        <h1 className="leading-tight text-5xl font-bold ">{title}</h1>
         <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-400">
           <div className="flex items-center md:space-x-2">
-            {imageUrl && (
+            {authorImgUrl && (
               <Image
-                src={imageUrl}
+                src={authorImgUrl}
                 alt="article cover image"
                 width={400}
                 height={400}
-                className="w-4 h-4 border rounded-full dark:bg-gray-500 dark:border-gray-700"
+                className="w-14 h-14 border rounded-full dark:bg-gray-500 dark:border-gray-700"
               />
             )}
-            <p className="text-sm dark:text-violet-400">
-              Paul brats • July 19th, 2021
+            <p className="text-md dark:text-violet-400">
+              {author && author.name} • {formatDate(publishedAt)}
             </p>
           </div>
         </div>

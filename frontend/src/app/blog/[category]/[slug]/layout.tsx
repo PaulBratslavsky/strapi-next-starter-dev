@@ -3,6 +3,7 @@ import React from "react";
 import { fetchAPI } from "@/app/utils/fetch-api";
 import ArticleSelect from "@/app/components/ArticleSelect";
 
+
 async function fetchSideMenuData(filter: string) {
   try {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;

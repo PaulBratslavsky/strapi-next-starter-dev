@@ -8,7 +8,7 @@ import Banner from "./components/Banner";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-async function getGlobal() {
+async function getGlobal(): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/global`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
