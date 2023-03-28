@@ -1,12 +1,8 @@
 import { sectionRenderer } from "./utils/section-renderer";
-import { delay } from "./utils/api-helpers";
 import { fetchAPI } from "./utils/fetch-api";
 
 async function getPageBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-
-  // CALLS DELAY TO SIMULATE SLOW API REMOVE FOR PRODUCTION
-  await delay(2000);
 
   const path = `/pages`;
   const urlParamsObject = { filters: { slug } };

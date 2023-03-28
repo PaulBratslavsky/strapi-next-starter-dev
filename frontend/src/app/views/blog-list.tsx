@@ -35,12 +35,12 @@ interface Article {
   };
 }
 
-export default function Blog({
+export default function PostList({
   data: articles,
   children,
 }: {
   data: Article[];
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
     <section className="container p-6 mx-auto space-y-6 sm:space-y-12">
@@ -61,7 +61,7 @@ export default function Blog({
             <Link
               href={`blog/${article.attributes.slug}`}
               key={article.id}
-              className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
+              className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
             >
               {imageUrl && (
                 <Image
@@ -102,7 +102,7 @@ export default function Blog({
           );
         })}
       </div>
-      {children}
+      {children && children}
     </section>
   );
 }
